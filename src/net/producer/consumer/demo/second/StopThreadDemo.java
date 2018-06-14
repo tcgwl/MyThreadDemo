@@ -18,6 +18,9 @@ stop方法已经过时。
 
 Thread类提供该方法 interrupt();
 
+ setDaemon(true):将该线程标记为守护线程。当正在运行的线程都是守护线程时，Java虚拟机退出。
+ 该方法必须在启动线程前调用。
+ 经典例子：圣斗士和雅典娜
 */
 class StopThread implements Runnable {
     private boolean flag =true;
@@ -50,7 +53,7 @@ class StopThreadDemo {
         while(true) {
             if(num++ == 500) {
                 st.changeFlag();
-//                t1.interrupt();
+//                t1.interrupt();//run方法中捕获InterruptedException后，将flag设为false，停止线程
 //                t2.interrupt();
                 break;
             }

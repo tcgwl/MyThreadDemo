@@ -6,6 +6,8 @@ join:
 
 join可以用来临时加入线程执行。
 
+ yield：暂停当前正在执行的线程对象，并执行其他线程。即放弃执行权。
+
 */
 
 class Demo implements Runnable {
@@ -24,15 +26,15 @@ class JoinDemo {
         Thread t1 = new Thread(d);
         Thread t2 = new Thread(d);
         t1.start();
+        t1.join();//main线程等待t1执行完才会继续执行
 
         //t1.setPriority(Thread.MAX_PRIORITY);
 
         t2.start();
 
-        t1.join();
 
         for(int x=0; x<80; x++) {
-            //System.out.println("main....."+x);
+            System.out.println("main....."+x);
         }
         System.out.println("over");
     }
